@@ -1,31 +1,48 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
-  hello: "Hello world"
+  application:
+    base_title: "Todollo"
+  header:
+    login: "Log in"
+  login:
+    email: "Email"
+    password: "Password"
+    remember_me: "Remember me"
+    new_users: "New to the site?"
+    signup: "Sign up"
+  user:
+    please_check_your_mail: "Please check your mail"
+    please_login: "Please login"
+  static_pages:
+    home:
+      title: "Home"
+  tasks:
+    task_deleted: "Task deleted successfully"
+    failed_to_delete_the_task: "Failed to delete the task"
+    not_found: "Not found"
+    index:
+      title: "Tasks List"
+      filter:
+        search_placeholder: "Search"
+        all_categories: "All Categories"
+        all_statuses: "All Statuses"
+        pending: "Pending"
+        in_progress: "In Progress"
+        completed: "Completed"
+        expired: "Expired"
+        filter_button: "Filter"
+        create_task_button: "Create Task"
+      table:
+        created_at: "Created At"
+        deadline: "Deadline"
+        title: "Title"
+        category: "Category"
+        status: "Status"
+        actions: "Actions"
+        update: "Update"
+        delete: "Delete"
+      messages:
+        no_tasks: "No tasks found."
+    update:
+      title: "Update Task"
+    new:
+      title: "New Task"

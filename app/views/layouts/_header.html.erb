@@ -1,0 +1,24 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <%= link_to "Todollo", root_path, id: "logo" %>
+    <nav>
+      <div class="navbar-header">
+        <button id="hamburger" type="button" class="navbar-toggle collapsed">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <ul id="navbar-menu" class="nav navbar-nav navbar-right collapse navbar-collapse">
+        <li><%= link_to t("header.home"), root_path %></li>
+        <% if logged_in? %>
+          <li><%= link_to t("header.tasks"), tasks_path %></li>
+          <li><%= link_to t("header.logout"), logout_path, data: { "turbo-method": :delete } %></li>
+        <% else %>
+          <li><%= link_to t("header.login"), login_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>
