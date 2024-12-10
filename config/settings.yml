@@ -3,7 +3,7 @@ default: &default
     mentor: 0
     naitei: 1
     supervisor: 2
-  username_max_length: 100
+  username_max_length_100: 100
 
   priorities:
     low: 0
@@ -19,7 +19,7 @@ default: &default
   task_title_max_length: 255
   task_participant_roles:
     participant: 0
-    mentor: 1
+    creator: 1
   actions:
     create: 0
     update: 1

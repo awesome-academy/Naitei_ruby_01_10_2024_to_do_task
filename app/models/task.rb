@@ -9,8 +9,8 @@ class Task < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :activities, dependent: :destroy
 
-  enum priority: Settings.default.priorities.symbolize_keys
-  enum status: Settings.default.status.symbolize_keys
+  enum priority: Settings.default.prioritiesto_h.transform_keys(&:to_sym)
+  enum status: Settings.default.statusto_h.transform_keys(&:to_sym)
 
   validates :title, presence: true, length: { maximum: Settings.default.task_title_max_length }
   validates :priority, presence: true
