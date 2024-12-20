@@ -12,3 +12,37 @@ en:
   user:
     please_check_your_mail: "Please check your mail"
     please_login: "Please login"
+  static_pages:
+    home:
+      title: "Home"
+  tasks:
+    task_deleted: "Task deleted successfully"
+    failed_to_delete_the_task: "Failed to delete the task"
+    not_found: "Not found"
+    index:
+      title: "Tasks List"
+      filter:
+        search_placeholder: "Search"
+        all_categories: "All Categories"
+        all_statuses: "All Statuses"
+        pending: "Pending"
+        in_progress: "In Progress"
+        completed: "Completed"
+        expired: "Expired"
+        filter_button: "Filter"
+        create_task_button: "Create Task"
+      table:
+        created_at: "Created At"
+        deadline: "Deadline"
+        title: "Title"
+        category: "Category"
+        status: "Status"
+        actions: "Actions"
+        update: "Update"
+        delete: "Delete"
+      messages:
+        no_tasks: "No tasks found."
+    update:
+      title: "Update Task"
+    new:
+      title: "New Task"

@@ -11,6 +11,10 @@ default: &default
     high: 2
     urgent: 3
 
+  task_roles:
+    - creator
+    - assignee
+
   status:
     pending: 0
     in_progress: 1
@@ -26,6 +30,8 @@ default: &default
     delete: 2
   comment_max_length_10_000: 10_000
   category_max_length_255: 255
+  tasks_per_page_5: 5
+  DATE_FORMAT: "%m-%d-%Y"
 
 development:
   <<: *default

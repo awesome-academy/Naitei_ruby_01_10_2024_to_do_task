@@ -1,0 +1,10 @@
+$gray-light: #777;
+$gray-medium-light: #eaeaea;
+$gray-medium-light: #eaeaea;
+$border-color: #bbb;
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
