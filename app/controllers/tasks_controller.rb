@@ -1,19 +1,31 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[destroy]
+  before_action :logged_in_user, only: %i[create destroy]
+  before_action :set_categories, :available_users, only: %i[new index create edit]
 
-  def new; end
-
-  def index
-    @tasks = Task.by_user current_user
-    @categories = Category.all
-    @tasks = @tasks.filter_by_category(params[:category])
-                  .filter_by_status(params[:status])
-                  .filter_by_deadline(params[:deadline])
-
-    @pagy, @tasks = pagy @tasks, items: Settings.default.tasks_per_page_5
+  def new
+    @task = Task.new
   end
 
-  def edit; end
+  def index
+    @tasks = current_user.mentor_role? ? Task.by_mentor_and_mentees(current_user.id) : current_user.tasks
+
+    @pagy, @tasks = pagy @tasks, limit: Settings.default.max_tasks_per_page_5
+  end
+
+  def create
+    @task = current_user.tasks.build(task_params)
+    if @task.save
+      flash[:success] = t "tasks.task_create_successfully"
+      redirect_to tasks_path
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @users = available_users
+  end
 
   def destroy
     if @task.destroy
@@ -26,11 +38,23 @@ class TasksController < ApplicationController
   end
 
   private
+  def task_params
+    params.require(:task).permit(Task::TASK_PERMITTED_ATTRIBUTES)
+  end
+
   def set_task
     @task = Task.find_by(id: params[:id])
     return if @task
 
     flash[:error] = t "tasks.not_found"
     redirect_to tasks_url, status: :see_other
+  end
+
+  def available_users
+    @users = current_user.mentor_role? ? current_user.mentees : [ current_user ]
+  end
+
+  def set_categories
+    @categories = current_user.categories
   end
 end

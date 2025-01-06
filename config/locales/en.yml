@@ -16,9 +16,24 @@ en:
     home:
       title: "Home"
   tasks:
-    task_deleted: "Task deleted successfully"
+    task_deleted: "Task deleted successfully!"
+    task_create_successfully: "Task create successfully!"
     failed_to_delete_the_task: "Failed to delete the task"
     not_found: "Not found"
+    title: "Title"
+    enter_title: "Enter title..."
+    description: "Description"
+    enter_description: "Enter description..."
+    enter_assignee: "Enter assignee..."
+    priority: "Priority"
+    select_priority: "Select priority"
+    status: "Status"
+    select_status: "Select status"
+    assignee: "Assignee"
+    start_date: "Start date"
+    deadline: "Deadline"
+    save: "Save"
+    select_category: "Select category"
     index:
       title: "Tasks List"
       filter:
@@ -42,7 +57,9 @@ en:
         delete: "Delete"
       messages:
         no_tasks: "No tasks found."
+
     update:
       title: "Update Task"
+
     new:
       title: "New Task"
