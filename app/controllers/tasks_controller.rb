@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[destroy]
-  before_action :logged_in_user, only: %i[create destroy]
-  before_action :set_categories, :available_users, only: %i[new index create edit]
+  before_action :set_task, only: %i[edit update destroy]
+  before_action :logged_in_user, only: %i[create edit destroy]
+  before_action :set_categories, :set_user, :available_users, only: %i[new index create edit]
 
   def new
     @task = Task.new
@@ -24,7 +24,17 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @users = available_users
+    @subtasks = @task.subtasks
+    @pagy, @subtasks = pagy @subtasks, limit: Settings.default.max_tasks_per_page_5
+  end
+
+  def update
+    if @task.update(task_params)
+      flash[:success] = t("tasks.update.successfully_updated")
+      redirect_to request.referer
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -40,6 +50,10 @@ class TasksController < ApplicationController
   private
   def task_params
     params.require(:task).permit(Task::TASK_PERMITTED_ATTRIBUTES)
+  end
+
+  def set_user
+    @user = current_user
   end
 
   def set_task

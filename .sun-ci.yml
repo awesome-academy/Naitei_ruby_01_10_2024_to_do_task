@@ -1,0 +1,39 @@
+workspace: true
+stages:
+  - build
+  - test
+jobs:
+  - name: build:prepare
+    stage: build
+    image: sunci/ruby:3.2.2
+    script:
+      - cp database-ci.yml config/database.yml
+      - bundle _2.5.23_ install --path vendor/bundle
+    cache:
+      key: vendor_$CI_COMMIT_REF_NAME
+      paths:
+        - vendor/bundle
+  - name: test:rspec
+    stage: test
+    image: sunci/ruby:3.2.2
+    services:
+      - image: mysql:5.7.20
+        name: mysql-test
+        environment:
+          MYSQL_DATABASE: db-test
+          MYSQL_USER: user-test
+          MYSQL_PASSWORD: password-test
+          MYSQL_ROOT_PASSWORD: password-test
+    before_script:
+      - bundle _2.5.23_ install --path vendor/bundle
+    script:
+      - RAILS_ENV=test bundle exec rails db:drop db:create db:migrate
+      - bundle _2.5.23_ exec rspec
+
+  - name: test:rubocop
+    stage: test
+    image: sunci/ruby:3.2.2
+    before_script:
+      - bundle _2.5.23_ install --path vendor/bundle
+    script:
+      - bundle exec rubocop --require rubocop/formatter/checkstyle_formatter --format RuboCop::Formatter::CheckstyleFormatter --no-color app/ lib/

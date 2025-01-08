@@ -36,9 +36,6 @@ tasks = []
     updated_at: Time.now
   )
 
-  task.task_participants.create!(user: admin, role: 'creator')
-  task.task_participants.create!(user: user, role: 'assignee') if [ true, false ].sample
-
   tasks << task
 end
 

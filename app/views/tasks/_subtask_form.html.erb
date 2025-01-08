@@ -1,0 +1,6 @@
+<%= form_with model: @task.subtasks.build, url: task_subtasks_path(@task), method: :post, html: { class: "new_subtask_form" } do |f| %>
+  <div class="card-body">
+    <%= f.hidden_field :parent_task_id, value: @task.id %>
+    <%= render partial: "shared/form_fields", locals: { f: f, categories: @categories, task: @subtask } %>
+  </div>
+<% end %>

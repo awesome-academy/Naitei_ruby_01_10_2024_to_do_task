@@ -18,4 +18,14 @@ module TasksHelper
   def status_options
     Task.statuses.keys.map { |s| [ s.humanize, s ] }
   end
+
+  def assignee_select(f, task, users, current_user)
+    if current_user.mentor_role?
+      f.select :assignee_id, options_from_collection_for_select(users, :id, :name, task.assignee_id), { include_blank: t("tasks.select_assignee") }, class: "form-control"
+    elsif current_user.naitei_role?
+      f.select :assignee_id, options_from_collection_for_select([ current_user ], :id, :name, task.assignee_id), { include_blank: t("tasks.select_assignee") }, class: "form-control"
+    else
+      f.select :assignee_id, [], { include_blank: t("tasks.select_assignee") }, class: "form-control"
+    end
+  end
 end
