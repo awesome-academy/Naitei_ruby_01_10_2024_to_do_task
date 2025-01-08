@@ -1,0 +1,39 @@
+<div class="mb-4">
+  <%= f.label :description, t("tasks.description"), class: "form-label fw-bold" %>
+  <%= f.text_area :description, rows: 4, class: "form-control", placeholder: t("tasks.enter_description"), aria: { label: t("tasks.description") } %>
+</div>
+
+<div class="row mb-4">
+  <div class="col-md-4">
+    <%= f.label :priority, t("tasks.priority"), class: "form-label fw-bold" %>
+    <%= f.select :priority, priority_options, { prompt: t("tasks.select_priority") }, required: true, class: "form-select" %>
+  </div>
+  <div class="col-md-4">
+    <%= f.label :status, t("tasks.status"), class: "form-label fw-bold" %>
+    <%= f.select :status, status_options, { prompt: t("tasks.select_status") }, required: true, class: "form-select" %>
+  </div>
+  <div class="col-md-4">
+    <%= f.label :category_id, "Select category", class: "form-label fw-bold" %>
+    <%= f.select :category_id, @categories.map { |c| [c.name, c.id] }, { prompt: "Select a category" }, class: "form-select" %>
+  </div>
+</div>
+
+<div class="mb-4">
+  <%= f.label :assignee_id, t("tasks.assignee"), class: "form-label fw-bold" %>
+  <%= f.select :assignee_id, options_from_collection_for_select(@users, :id, :name, @task.assignee_id), { include_blank: t("tasks.select_assignee") }, class: "form-control" %>
+</div>
+
+<div class="row mb-4">
+  <div class="col-md-6">
+    <%= f.label :start_date, t("tasks.start_date"), class: "form-label fw-bold" %>
+    <%= f.date_field :start_date, class: "form-control", required: true %>
+  </div>
+  <div class="col-md-6">
+    <%= f.label :deadline, t("tasks.deadline"), class: "form-label fw-bold" %>
+    <%= f.date_field :deadline, class: "form-control", required: true %>
+  </div>
+</div>
+
+<div class="d-flex justify-content-end">
+  <%= f.submit t("tasks.save"), class: "btn btn-success btn-lg" %>
+</div>

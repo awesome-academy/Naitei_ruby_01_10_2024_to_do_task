@@ -1,0 +1,9 @@
+<%= form_with model: @task, local: true, html: { class: "card shadow-sm" } do |f| %>
+  <div class="card-body">
+    <div class="mb-4">
+      <%= f.label :title, t("tasks.title"), class: "form-label fw-bold" %>
+      <%= f.text_field :title, class: "form-control form-control-lg", placeholder: t("tasks.enter_title"), required: true, aria: { label: t("tasks.title") } %>
+    </div>
+    <%= render partial: "shared/form_fields", locals: { f: f, categories: @categories, task: @task } %>
+  </div>
+<% end %>
