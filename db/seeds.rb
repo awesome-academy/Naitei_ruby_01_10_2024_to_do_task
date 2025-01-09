@@ -3,14 +3,14 @@ admin = User.create!(
   email: 'admin@example.com',
   password: 'password123',
   name: 'Admin User',
-  role: 'supervisor'
+  role: 'mentor'
 )
 
 user = User.create!(
   email: 'user@example.com',
   password: 'password123',
   name: 'Regular User',
-  role: 'mentor'
+  role: 'naitei'
 )
 
 # Create Categories

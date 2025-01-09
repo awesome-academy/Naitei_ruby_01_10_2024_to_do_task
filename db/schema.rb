@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_08_025849) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_09_065827) do
   create_table "activities", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "task_id", null: false
@@ -69,6 +69,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_08_025849) do
     t.boolean "activated"
     t.datetime "activated_at"
     t.integer "mentor_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "activities", "tasks"

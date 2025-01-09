@@ -5,23 +5,29 @@ class User < ApplicationRecord
 
   attr_accessor :remember_token, :activation_token, :reset_token
 
-  USER_PERMITTED_ATTRIBUTES = %i[name email password].freeze
+  USER_PERMITTED_ATTRIBUTES = %i(name email password).freeze
 
   has_many :tasks, dependent: :destroy
-  has_many :mentees, class_name: "User", foreign_key: :mentor_id, dependent: :nullify
+  has_many :mentees, class_name: "User",
+          foreign_key: :mentor_id, dependent: :nullify
   belongs_to :mentor, class_name: "User", optional: true
-  has_many :created_tasks, class_name: "Task", foreign_key: :creator_id, dependent: :destroy
-  has_many :assigned_tasks, class_name: "Task", foreign_key: :assignee_id, dependent: :nullify
+  has_many :created_tasks, class_name: "Task",
+          foreign_key: :creator_id, dependent: :destroy
+  has_many :assigned_tasks, class_name: "Task",
+          foreign_key: :assignee_id, dependent: :nullify
   has_many :categories, dependent: :destroy
   has_many :activities, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :task_participants, dependent: :destroy
-  has_many :participated_tasks, through: :task_participants, source: :task
 
-  enum role: Settings.default.roles.to_h.transform_keys(&:to_sym), _suffix: true
-
-  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :name, presence: true, length: { maximum: Settings.default.username_max_length_100 }
+  enum role: Settings.default.roles.to_h.transform_keys(&:to_sym),
+       _suffix: true
+  validates :email,
+            presence: true,
+            uniqueness: true,
+            format: {with: URI::MailTo::EMAIL_REGEXP}
+  validates :name, presence: true,
+          length: {maximum: Settings.default.username_max_length_100}
   validates :role, presence: true
 
   before_save :downcase_email
@@ -34,9 +40,9 @@ class User < ApplicationRecord
     def digest string
       cost = if ActiveModel::SecurePassword.min_cost
                BCrypt::Engine::MIN_COST
-      else
-        BCrypt::Engine.cost
-      end
+             else
+               BCrypt::Engine.cost
+             end
       BCrypt::Password.create(string, cost:)
     end
   end
@@ -47,7 +53,7 @@ class User < ApplicationRecord
     remember_digest
   end
 
-  def authenticated?(attribute, token)
+  def authenticated? attribute, token
     digest = send "#{attribute}_digest"
     return false if digest.nil?
 
