@@ -1,4 +1,9 @@
 <div class="mb-4">
+  <%= f.label :title, t("tasks.title"), class: "form-label fw-bold" %>
+  <%= f.text_field :title, class: "form-control form-control-lg", placeholder: t("tasks.enter_title"), required: true, aria: { label: t("tasks.title") } %>
+</div>
+
+<div class="mb-4">
   <%= f.label :description, t("tasks.description"), class: "form-label fw-bold" %>
   <%= f.text_area :description, rows: 4, class: "form-control", placeholder: t("tasks.enter_description"), aria: { label: t("tasks.description") } %>
 </div>
@@ -19,8 +24,7 @@
 </div>
 
 <div class="mb-4">
-  <%= f.label :assignee_id, t("tasks.assignee"), class: "form-label fw-bold" %>
-  <%= f.select :assignee_id, options_from_collection_for_select(@users, :id, :name, @task.assignee_id), { include_blank: t("tasks.select_assignee") }, class: "form-control" %>
+  <%= assignee_select(f, @task, @users, @user) %>
 </div>
 
 <div class="row mb-4">

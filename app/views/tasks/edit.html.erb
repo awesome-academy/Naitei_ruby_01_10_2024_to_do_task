@@ -1,2 +1,29 @@
-<% provide :title, t("tasks.update.title") %>
-<h1><%= t("tasks.update.title") %></h1>
+<% provide :title, @task.title %>
+<h1><%= t "tasks.update.title" %></h1>
+
+<div class="task_form">
+  <%= render "task_form" %>
+
+  <div class="add-subtask">
+    <% unless @task.parent_task %>
+      <button id="add-subtask-btn" class="btn btn-primary">
+        <%= t("tasks.edit.add_new_subtask") %>
+      </button>
+
+      <% if @subtasks.present? && @subtasks.any? %>
+        <%= render "task_table", tasks: @subtasks, pagy: @pagy %>
+      <% else %>
+        <p><%= t("tasks.index.messages.no_subtasks") %></p>
+      <% end %>
+
+      <div id="subtask-popup" class="popup" style="display: none;">
+        <div class="popup-content">
+          <span class="close" id="close-popup">&times;</span>
+          <%= render "subtask_form", task: @subtask, parent_task_id: @task.id %>
+        </div>
+      </div>
+
+      <div class="overlay" id="overlay" style="display: none;"></div>
+    <% end %>
+  </div>
+</div>

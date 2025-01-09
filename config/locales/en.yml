@@ -12,6 +12,7 @@ en:
   user:
     please_check_your_mail: "Please check your mail"
     please_login: "Please login"
+    you_sure: "You sure"
   static_pages:
     home:
       title: "Home"
@@ -57,9 +58,12 @@ en:
         delete: "Delete"
       messages:
         no_tasks: "No tasks found."
+        no_subtasks: "No subtasks"
 
     update:
       title: "Update Task"
+      successfully_updated: "Successfully updated"
 
     new:
       title: "New Task"
+      subtask_created_successfully: "Subtask created successfully!"
