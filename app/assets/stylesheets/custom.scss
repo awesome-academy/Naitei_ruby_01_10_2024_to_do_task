@@ -130,3 +130,72 @@ input {
   background: rgba(0, 0, 0, 0.5);
   z-index: 1000;
 }
+
+/* Comments */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chat-comments {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.chat-comment {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.chat-comment.sent {
+  justify-content: flex-end;
+}
+
+.chat-comment.received {
+  justify-content: flex-start;
+}
+
+.comment-content {
+  max-width: 70%;
+  background-color: $background-comment;
+  padding: 10px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.chat-comment .avatar {
+  margin-right: 10px;
+}
+
+.chat-comment .avatar-img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.text {
+  margin-top: 5px;
+}
+
+.timestamp {
+  font-size: 0.8em;
+  color: $time-step;
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+}
+
+.chat-input {
+  margin-top: 20px;
+}
+
+.comments--box {
+  border-radius: 10px;
+  border: solid 1px;
+  padding: 5px;
+}

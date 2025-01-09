@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_08_025849) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_09_065827) do
   create_table "activities", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "task_id", null: false
@@ -38,6 +38,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_08_025849) do
     t.datetime "updated_at", null: false
     t.index ["task_id"], name: "index_comments_on_task_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "task_participants", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "task_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_task_participants_on_task_id"
+    t.index ["user_id"], name: "index_task_participants_on_user_id"
   end
 
   create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -69,6 +79,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_08_025849) do
     t.boolean "activated"
     t.datetime "activated_at"
     t.integer "mentor_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "activities", "tasks"
@@ -76,6 +87,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_08_025849) do
   add_foreign_key "categories", "users"
   add_foreign_key "comments", "tasks"
   add_foreign_key "comments", "users"
+  add_foreign_key "task_participants", "tasks"
+  add_foreign_key "task_participants", "users"
   add_foreign_key "tasks", "categories"
   add_foreign_key "tasks", "tasks", column: "parent_task_id"
 end

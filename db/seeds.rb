@@ -1,23 +1,23 @@
 # Create Users
 admin = User.create!(
-  email: 'admin@example.com',
-  password: 'password123',
-  name: 'Admin User',
-  role: 'supervisor'
+  email: "admin@example.com",
+  password: "password123",
+  name: "Admin User",
+  role: "mentor"
 )
 
 user = User.create!(
-  email: 'user@example.com',
-  password: 'password123',
-  name: 'Regular User',
-  role: 'mentor'
+  email: "user@example.com",
+  password: "password123",
+  name: "Regular User",
+  role: "naitei"
 )
 
 # Create Categories
 categories = [
-  Category.create!(name: 'Development', user_id: admin.id),
-  Category.create!(name: 'Design', user_id: user.id),
-  Category.create!(name: 'Management', user_id: admin.id)
+  Category.create!(name: "Development", user_id: admin.id),
+  Category.create!(name: "Design", user_id: user.id),
+  Category.create!(name: "Management", user_id: admin.id)
 ]
 
 # Create Tasks

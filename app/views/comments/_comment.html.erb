@@ -1,0 +1,8 @@
+<div class="chat-comment <%= comment_user(comment, current_user) %>">
+  <div class="comment-content">
+    <div class="username"><%= comment.sender.name %></div>
+    <div class="text"><%= comment.content %></div>
+    <div class="timestamp"><%= comment.created_at.strftime("%H:%M") %></div>
+  </div>
+  <%= comment_delete_button(comment, @task) %>
+</div>

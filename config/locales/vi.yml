@@ -1,0 +1,81 @@
+vi:
+  application:
+    base_title: "Todollo"
+  header:
+    login: "Đăng nhập"
+  login:
+    email: "Email"
+    password: "Mật khẩu"
+    remember_me: "Nhớ tôi"
+    new_users: "Mới đến trang web?"
+    signup: "Đăng ký"
+  user:
+    logout_successfully: "Đăng xuất thành công"
+    please_check_your_mail: "Vui lòng kiểm tra email của bạn"
+    please_login: "Vui lòng đăng nhập"
+    you_sure: "Bạn chắc chứ?"
+  static_pages:
+    home:
+      title: "Trang chủ"
+  tasks:
+    task_deleted: "Xóa nhiệm vụ thành công!"
+    task_create_successfully: "Tạo nhiệm vụ thành công!"
+    failed_to_delete_the_task: "Xóa nhiệm vụ không thành công"
+    not_found: "Không tìm thấy"
+    title: "Tiêu đề"
+    enter_title: "Nhập tiêu đề..."
+    description: "Mô tả"
+    enter_description: "Nhập mô tả..."
+    enter_assignee: "Nhập người được giao..."
+    priority: "Độ ưu tiên"
+    select_priority: "Chọn độ ưu tiên"
+    status: "Trạng thái"
+    select_status: "Chọn trạng thái"
+    assignee: "Người được giao"
+    start_date: "Ngày bắt đầu"
+    deadline: "Thời hạn"
+    save: "Lưu"
+    select_category: "Chọn danh mục"
+    index:
+      title: "Danh sách Nhiệm vụ"
+      filter:
+        search_placeholder: "Tìm kiếm"
+        all_categories: "Tất cả Danh mục"
+        all_statuses: "Tất cả Trạng thái"
+        pending: "Đang chờ"
+        in_progress: "Đang tiến hành"
+        completed: "Đã hoàn thành"
+        expired: "Đã hết hạn"
+        filter_button: "Lọc"
+        create_task_button: "Tạo Nhiệm vụ"
+      table:
+        created_at: "Ngày tạo"
+        deadline: "Thời hạn"
+        title: "Tiêu đề"
+        category: "Danh mục"
+        status: "Trạng thái"
+        actions: "Hành động"
+        update: "Cập nhật"
+        delete: "Xóa"
+      messages:
+        no_tasks: "Không tìm thấy nhiệm vụ nào."
+        no_subtasks: "Không có nhiệm vụ con"
+
+    update:
+      title: "Cập nhật Nhiệm vụ"
+      successfully_updated: "Cập nhật thành công"
+
+    new:
+      title: "Nhiệm vụ Mới"
+      subtask_created_successfully: "Tạo nhiệm vụ con thành công!"
+
+    comment:
+        failed_to_add_comment: "Thêm bình luận không thành công."
+        failed_to_delete_comment: "Xóa bình luận không thành công."
+        comment_deleted_successfully: "Bình luận đã được xóa thành công."
+        comments: "Bình luận"
+        no_comments_yet: "Chưa có bình luận nào."
+        confirrm_delete: "Bạn có chắc chắn muốn xóa bình luận này không?"
+        type_your_comment: "Nhập bình luận của bạn..."
+        send: "Gửi"
+        delete: "Xóa"
