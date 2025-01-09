@@ -24,7 +24,8 @@
 </div>
 
 <div class="mb-4">
-  <%= assignee_select(f, @task, @users, @user) %>
+  <%= f.label :assignee_id, t("tasks.assignee"), class: "form-label fw-bold" %>
+  <%= f.select :assignee_id, options_from_collection_for_select(@users, :id, :name, @task.assignee_id), { include_blank: t("tasks.select_assignee") }, class: "form-control" %>
 </div>
 
 <div class="row mb-4">

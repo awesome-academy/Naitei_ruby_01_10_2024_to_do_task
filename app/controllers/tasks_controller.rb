@@ -1,16 +1,23 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[edit update destroy]
-  before_action :logged_in_user, only: %i[create edit destroy]
-  before_action :set_categories, :set_user, :available_users, only: %i[new index create edit]
+  before_action :set_task, only: %i(edit update destroy)
+  before_action :logged_in_user, only: %i(create edit destroy)
+  before_action :set_categories, :set_user, :available_users,
+                only: %i(new index create edit)
+  before_action :set_comment, only: %i(edit)
 
   def new
     @task = Task.new
   end
 
   def index
-    @tasks = current_user.mentor_role? ? Task.by_mentor_and_mentees(current_user.id) : current_user.tasks
+    @tasks = if current_user.mentor_role?
+               Task.by_mentor_and_mentees current_user.id
+             else
+               Task.by_naitei current_user.id
+             end
 
-    @pagy, @tasks = pagy @tasks, limit: Settings.default.max_tasks_per_page_5
+    @pagy, @tasks =
+      pagy @tasks, limit: Settings.default.max_tasks_per_page_5
   end
 
   def create
@@ -25,7 +32,8 @@ class TasksController < ApplicationController
 
   def edit
     @subtasks = @task.subtasks
-    @pagy, @subtasks = pagy @subtasks, limit: Settings.default.max_tasks_per_page_5
+    @pagy, @subtasks =
+      pagy @subtasks, limit: Settings.default.max_tasks_per_page_5
   end
 
   def update
@@ -65,10 +73,14 @@ class TasksController < ApplicationController
   end
 
   def available_users
-    @users = current_user.mentor_role? ? current_user.mentees : [ current_user ]
+    @users = current_user.mentor_role? ? current_user.mentees : [current_user]
   end
 
   def set_categories
     @categories = current_user.categories
+  end
+
+  def set_comment
+    @comments = @task.comments
   end
 end
