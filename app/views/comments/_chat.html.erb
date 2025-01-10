@@ -1,0 +1,18 @@
+<h3><%= t "tasks.comment.comments" %></h3>
+
+<div class="chat-comments">
+  <% if @comments.present? %>
+    <% @comments.each do |comment| %>
+      <%= render partial: "comments/comment", locals: { comment: comment, current_user: current_user, task: @task } %>
+    <% end %>
+  <% else %>
+    <p><%= t "tasks.comment.no_comments_yet" %></p>
+  <% end %>
+</div>
+
+<div class="chat-input">
+  <%= form_with(model: [@task, @task.comments.build], local: true) do |form| %>
+    <%= form.text_area :content, placeholder: t("tasks.comment.type_your_comment"), class: "form-control", rows: 3, required: true %>
+    <%= form.submit t("tasks.comment.send"), class: "btn btn-primary mt-2" %>
+  <% end %>
+</div>
